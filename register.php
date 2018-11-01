@@ -14,46 +14,46 @@
 
 	<h1 class="text-center">Register</h1>
 
-	<form method="POST" action="#">
+	<form method="POST" action="insert_register.php">
 		
 		<div class="form-group">
 			<label>Name team</label>
-			<input class="form-control" type="text" placeholder="name team" required="true">
+			<input class="form-control" type="text" placeholder="name team" name="name_team" required="true">
 		</div>
 	
 		<div class="form-group">
 			<label>Short name</label>
-			<input class="form-control" type="text" placeholder="short name" required="true">
+			<input class="form-control" type="text" placeholder="short name" name="short_name" required="true">
 		</div>
 
 		<div class="form-group">
 			<label>Creation date</label>
-			<input class="form-control" type="date" required="true">
+			<input class="form-control" type="date" name="creation_date" required="true">
 		</div>
 
 		<div class="form-group">
 			<label>Responsability adress</label>
-			<input class="form-control" type="text" placeholder="responsabilty adress">
+			<input class="form-control" type="text" name="adress" placeholder="responsabilty adress">
 		</div>
 
 		<div class="form-group">
 			<label>Email</label>
-			<input class="form-control" type="email" placeholder="email" required="true">
+			<input class="form-control" type="email" name="email" placeholder="email" required="true">
 		</div>
 
 		<div class="form-group">
 			<label>Website</label>		
-			<input class="form-control" typer="web" placeholder="website">
+			<input class="form-control" typer="web" name="website" placeholder="website">
 		</div>
 
 		<div class="form-group">
 			<label>Username</label>
-			<input class="form-control" type="text" placeholder="username" required="true">
+			<input class="form-control" type="text" name="user" placeholder="username" required="true">
 		</div>
 
 		<div class="form-group">
 			<label>Password</label>
-			<input class="form-control" type="password" placeholder="password" required="true">
+			<input class="form-control" type="password" name="password" placeholder="password" required="true">
 		</div>
 
 		<div class="form-group">
