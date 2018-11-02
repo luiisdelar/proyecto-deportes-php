@@ -39,6 +39,19 @@
 
 				mysqli_set_charset($conexion,"utf8");
 				
+				$consulta="select user from users_pass";
+
+				$resultados=mysqli_query($conexion,$consulta);
+
+				while($fila=mysqli_fetch_row($resultados)){
+
+					if (strcasecmp($fila[0],$user)===0) {
+						echo "<script>alert('El usuario ya existe'); location.href ='index.php'; </script>";
+						exit();
+					}
+
+				}
+
 				$consulta="insert into users_pass (user, password, name_team, short_name, creation_date, adress, email, website) values ('$user','$pass','$name_team','$short_name','$creation','$adress','$email','$website')";
 
 				$resultados=mysqli_query($conexion,$consulta);
