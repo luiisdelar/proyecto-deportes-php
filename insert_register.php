@@ -8,14 +8,21 @@
 
 	<?php 
 
+
 		$name_team=$_POST["name_team"];
-		$short_name=$_POST["short_name"];
+		$short_name=trim($_POST["short_name"]);
 		$creation=$_POST["creation_date"];
 		$adress=$_POST["adress"];
 		$email=$_POST["email"];
 		$website=$_POST["website"];
 		$user=$_POST["user"];
 		$pass=$_POST["password"];
+
+		var_dump($short_name);
+
+		if (empty($short_name)) {
+			header("location:err_register.php");
+		}
 
 		require("data_connection.php");	
 
@@ -53,6 +60,6 @@
 		mysqli_close($conexion);
 
 	 ?>
-
+	<script> alert("Soy un aviso"); </script>
 </body>
 </html>

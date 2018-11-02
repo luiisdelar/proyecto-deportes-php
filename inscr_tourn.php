@@ -29,13 +29,46 @@
 			<div class="form-group">
 				<label>Tournaments</label>
 				<select class="form-control">
-					<option>Mundial</option>	
+
+					<?php 
+
+						require("data_connection.php");
+						
+						$conexion=mysqli_connect($db_host,$db_usuario,$db_pass,$db_nombre);
+
+						if (mysqli_connect_errno()) {
+							echo "<script> alert('Error al conectar con la base de datos'); </script>";
+							exit();
+						}
+
+						mysqli_set_charset($conexion,"utf8");
+
+						$consulta="select name_tourn from tournaments";
+
+						$resultados=mysqli_query($conexion,$consulta);
+
+						while($fila=mysqli_fetch_row($resultados)){
+
+							echo "<option>" . $fila[0] . "</option>";
+
+						}
+					 ?>	
+
 				</select>
 			</div>
 
 			<div class="form-group">
-				<label>Participants</label>
-				<input class="form-control" type="number">
+				<label>Participants numbers</label>
+				<input class="form-control" type="number" name="participants" placeholder="participants numbers">
+			</div>
+
+			<div class="form-group">
+				<label>Category</label>
+				<select class="form-control">
+					<option>Beginner</option>
+					<option>Amateur</option>
+					<option>Profesional</option>
+				</select>
 			</div>
 
 		</form>
