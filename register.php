@@ -134,8 +134,12 @@
 		</div>
 
 		<div class="form-group">
-			<input class="form-control" type="submit" name="register" value="Register">
+			<input class="form-control btn btn-primary" type="submit" name="register" value="Register">
 		</div>
+
+		<div class="form-group">
+			<input class="form-control btn btn-primary" type="button" value="Return" onclick="location.href='index.php';">
+		</div>	
 	</form>
 
 	</div>

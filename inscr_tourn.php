@@ -23,7 +23,10 @@
 	<div class="container">
 		<h1 class="text-center">Inscrip Tourn</h1>
 		<h3 class="text-center">Bienvenid@ <?php echo $_SESSION["user"]; ?></h3>
+
 		<input class="btn btn-primary" type="button" value="Logout" onclick="location.href='logout.php';">
+		<input class="btn btn-primary" type="button" value="Return" onclick="location.href='logout.php';">
+
 		<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
 			<div class="form-group">
@@ -110,7 +113,7 @@
 						echo "<script> alert('ERRORRRR'); </script>";
 						var_dump($user);							
 					}else{
-						echo "<script> alert('Equipo inscrito con exito'); location.href ='index.php'; </script>";
+						echo "<script> alert('Equipo inscrito con exito'); location.href ='list_tourn.php'; </script>";
 					}
 
 					msqli_close($conexion);	
