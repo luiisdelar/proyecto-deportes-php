@@ -41,32 +41,51 @@
 						}
 
 						mysqli_set_charset($conexion,"utf8");
-
-						$consulta="select * from inscriptions where user='$user' ";
-
-						$resultados=mysqli_query($conexion,$consulta);
-
-						echo "<div class='row'> ";
-							echo "<div class='col'> Tournament </div> <div class='col'> Number of participants</div> <div class='col'>Category</div> ";
-							echo "</div>";
-
-						while($fila=mysqli_fetch_row($resultados)){
-
+				
+						?>
+						<div class="table-responsive">
+							<table class="table table-dark table-striped table-bordered table-hover">
 							
-							echo "<div class='row'> ";
-							echo "<div class='col'> <label class='from-group'>".$fila[1]."</label> </div> <div class='col'> <label>".$fila[2]."</label> </div> <div class='col'> <label>".$fila[3]."</label> </div> ";
-							echo "</div>";
-							//echo "<br>";
+								<thead>
+									 <tr>
+									    <th>Tournament</th>
+									    <th>Number of participants</th>
+									    <th>Category</th>
+									 </tr>
+								</thead>
+								
+								<tbody>
+									<?php 
 
-						}	
+										$consulta="select * from inscriptions where user='$user' ";
+										$resultados=mysqli_query($conexion,$consulta);
 
-						mysqli_close($conexion);
-					 ?>	
+										while($fila=mysqli_fetch_row($resultados)){
+										
+											echo "<tr><td>".$fila[1]."</td>";
+											echo "<td>".$fila[2]."</td>";
+
+												if ($fila[3]==1) {
+													echo "<td>Beginner</td></tr>";
+												}
+												if ($fila[3]==2) {
+													echo "<td>Amateur</td></tr>";
+												}
+												if ($fila[3]==3) {
+													echo "<td>Professional</td></tr>";
+												}
+
+										}	
+
+										mysqli_close($conexion);
+					 				?>	
+								</tbody>
+
+							</table>
+						</div>
+						
 
 	</div>
-	
-
-	
 
 </body>
 

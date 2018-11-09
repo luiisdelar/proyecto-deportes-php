@@ -59,24 +59,13 @@
 				if (!$resultados) {
 					echo "Error en la consulta";
 				}else{
-					echo "<script> alert('Equipo registrado con exito'); </script>";
-					header("location:index.php");
+					echo "<script> alert('Equipo registrado con exito'); location.href ='index.php' </script>";
+					exit();
 
 				}
-				/**********consulta**********
-				$consulta="select * from users_pass";
-
-				$resultados=mysqli_query($conexion,$consulta);
-
-				while($fila=mysqli_fetch_row($resultados)){
-
-					echo $fila[1];
-
-				}*/
 
 				mysqli_close($conexion);
 
-	 
 		}
 
 

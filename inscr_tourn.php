@@ -91,9 +91,9 @@
 			<div class="form-group">
 				<label>Category</label>
 				<select class="form-control" name="category">
-					<option value="Beginner">Beginner</option>
-					<option value="Amateur">Amateur</option>
-					<option value="Profesional">Profesional</option>
+					<option value="1">Beginner</option>
+					<option value="2">Amateur</option>
+					<option value="3">Profesional</option>
 				</select>
 			</div>	
 
@@ -126,15 +126,15 @@
 
 					mysqli_set_charset($conexion,"utf8");
 
-					$consulta="select name_tourn from inscriptions where user='$user' ";
+					$consulta="select name_tourn,category from inscriptions where user='$user' ";
 
 					$resultados=mysqli_query($conexion,$consulta);
 
 					while($fila=mysqli_fetch_row($resultados)){
 
-						if (strcasecmp($fila[0],$tourn)===0) {
+						if (strcasecmp($fila[0],$tourn)===0 && strcasecmp($fila[1],$cat)===0) {
 							
-							echo "<script> alert('Equipo ya inscrito en ese torneo'); location.href ='list_tourn.php'; </script>";
+							echo "<script> alert('Equipo ya inscrito en ese torneo y en esa categoria'); location.href ='list_tourn.php'; </script>";
 							exit();
 						}
 
