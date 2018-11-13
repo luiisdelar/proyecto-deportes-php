@@ -12,16 +12,14 @@
 
 			<input class="btn btn-primary" type="button" value="Logout" onclick="location.href='logout.php';">
 			<input class="btn btn-primary" type="button" value="Return" onclick="location.href='logout.php';">
-			
-			<div class="row">
-			
-				<div class="col-3">
+
+
+			<form class="row" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				<div class="col-4">
 					<h3>Tournaments:</h3>
-					<select class="form-control">
+					<select class="form-control" name="tour">
 				
 				
-				
-			
 			<?php 
 					require("data_connection.php");	
 
@@ -45,21 +43,21 @@
 			</select>
 			</div>
 			
-				<div class="col-3">
+				<div class="col-4">
 					<h3>Category</h3>
-					<select class="form-control">
-						<option>Beginner</option>
-						<option>Amateur</option>
-						<option>Professional</option>
+					<select class="form-control" name="cat">
+						<option value="1">Beginner</option>
+						<option value="2">Amateur</option>
+						<option value="3">Professional</option>
 					</select>
 				</div>
 
-				<div class="col-3 d-flex align-items-end">
-					
-					<input class="btn btn-primary" type="button" name="accept" value="Consult">
-					
+				<div class="col-4 d-flex align-items-end">
+					<input class="btn btn-primary" type="submit" name="consult" value="Consult">
 				</div>
-			</div>
+				
+			</form>
+			
 
 			<div class="table-responsive">
 			<table class="table table-dark table-striped table-bordered table-hover">
@@ -73,19 +71,37 @@
 					 	<th>Aux</th>
 					 </tr>
 				</thead>
+
 				Ver un listado con todos los datos de los equipos inscritos en el torneo.	
-
-
 
 				<tbody>
 					<tr>
-
 						
-						<td>aaaa</td>
-						<td>bbbb</td>
-						<td>cccc</td>
-						<td>dddd</td>
-						<td>eeee</td>
+						<?php 
+							if (isset($_POST["consult"])) {
+
+								$tour=$_POST["tour"];
+								$cat=$_POST["cat"];
+								
+								$consulta="select * from tournaments";
+									
+								$resultados=mysqli_query($conexion,$consulta);
+
+								while($fila=mysqli_fetch_row($resultados)){
+									echo "<option value='" . $fila[1] . "'>" . $fila[1] . "</option>";
+								}	
+								echo $tour." -- ".$cat;
+							}else{
+								echo "Nooooooooo";
+							}
+
+						 ?>
+						<td>
+						</td>
+						<td>-------</td>
+						<td>-------</td>
+						<td>-------</td>
+						<td>-------</td>
 					</tr>
 				</tbody>
 
