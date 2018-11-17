@@ -72,41 +72,49 @@
 					 </tr>
 				</thead>
 
-				Ver un listado con todos los datos de los equipos inscritos en el torneo.	
-
 				<tbody>
-					<tr>
+					
 						
 						<?php 
 							if (isset($_POST["consult"])) {
 
 								$tour=$_POST["tour"];
 								$cat=$_POST["cat"];
-								
-								$consulta="select * from tournaments";
+								$log="logout.php";
+
+								$consulta="select i.name_tourn, i.participants, u.name_team 
+										   from inscriptions i, users_pass u
+										   where name_tourn='$tour' and category='$cat' and i.user=u.user";
 									
 								$resultados=mysqli_query($conexion,$consulta);
 
 								while($fila=mysqli_fetch_row($resultados)){
-									echo "<option value='" . $fila[1] . "'>" . $fila[1] . "</option>";
+										
+									echo "<tr><td>".$tour."</td>";
+									echo "<td>".$cat."</td>";
+									echo "<td>".$fila[2]."</td>";
+									echo "<td>".$fila[1]."</td>";
+									echo "<td> <input class='btn btn-primary' type='submit' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>")' <?php echo ">
+											   <input class='btn btn-primary' type='submit' name='edit' value='Edit'>
+											   <input class='btn btn-primary' type='submit' name='delete' value='Delete'></td></tr>";
 								}	
-								echo $tour." -- ".$cat;
+								
 							}else{
-								echo "Nooooooooo";
+								echo "ERRRRRRRRRRRROOOOOORRRRRRRRR";
 							}
 
 						 ?>
-						<td>
-						</td>
-						<td>-------</td>
-						<td>-------</td>
-						<td>-------</td>
-						<td>-------</td>
-					</tr>
+						
 				</tbody>
-
+				
 			</table>
 			</div>
 
 </body>
+
+<script type="text/javascript">
+	function admin(a) {
+		location.href="managedata.php/?team="+a;
+	}
+</script>
 </html>
