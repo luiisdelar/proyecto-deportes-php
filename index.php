@@ -1,13 +1,6 @@
-<html>
-
-<head>
-	<title>The System</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap4.1/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
+<?php require("templates/header.php"); ?>
 
 <body>
-
 	<?php 
 
 		if (isset($_POST["login"])) {
@@ -83,8 +76,8 @@
 			</form>
 
 		</div>
+		
 
 	</div>
-</body>
 
-</html>
+<?php require("templates/endpage.php"); ?>

@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap4.1/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
+	
 <body>
 
 	 		<h1 class="text-center">Admin Zone</h1>
@@ -82,25 +83,24 @@
 								$cat=$_POST["cat"];
 								$log="logout.php";
 
-								$consulta="select i.name_tourn, i.participants, u.name_team 
+								$consulta="select i.name_tourn, i.participants, u.name_team, u.creation_date, u.adress, u.email
 										   from inscriptions i, users_pass u
 										   where name_tourn='$tour' and category='$cat' and i.user=u.user";
 									
 								$resultados=mysqli_query($conexion,$consulta);
 
 								while($fila=mysqli_fetch_row($resultados)){
-										
+									echo "<form method='POST' action='manage_data.php'>";	
 									echo "<tr><td>".$tour."</td>";
 									echo "<td>".$cat."</td>";
 									echo "<td>".$fila[2]."</td>";
 									echo "<td>".$fila[1]."</td>";
-									echo "<td> <input class='btn btn-primary' type='submit' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>")' <?php echo ">
+									echo "<td> <input class='btn btn-primary' type='submit' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $fila[1]; ?>","<?php echo $fila[3]; ?>","<?php echo $fila[4]; ?>","<?php echo $fila[5]; ?>")' <?php echo ">
 											   <input class='btn btn-primary' type='submit' name='edit' value='Edit'>
 											   <input class='btn btn-primary' type='submit' name='delete' value='Delete'></td></tr>";
+											   echo "</form>";
 								}	
-								
-							}else{
-								echo "ERRRRRRRRRRRROOOOOORRRRRRRRR";
+								//mysqli_close($conexion);
 							}
 
 						 ?>
@@ -113,8 +113,9 @@
 </body>
 
 <script type="text/javascript">
-	function admin(a) {
-		location.href="managedata.php/?team="+a;
+	function admin(a,b,c,d,e,f,g) {
+		<?php $v="" ?>
+		alert("Team: "+a+" \nCategory: "+b+"\nTournament: "+c+"\nParticipants: "+d+"\nCreation date: "+e+"\nAdress: "+f+"\nEmail: "+g);
 	}
 </script>
 </html>

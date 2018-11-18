@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
+<?php require("templates/header.php"); ?>
 
-<head>
-	<title>The System</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap4.1/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
 
 <body>
 
@@ -86,7 +80,4 @@
 						
 
 	</div>
-
-</body>
-
-</html>
+<?php require("templates/endpage.php"); ?>
