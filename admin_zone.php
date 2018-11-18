@@ -83,7 +83,8 @@
 								$cat=$_POST["cat"];
 								$log="logout.php";
 
-								$consulta="select i.name_tourn, i.participants, u.name_team, u.creation_date, u.adress, u.email
+								$consulta="select i.name_tourn, i.participants, u.name_team, u.creation_date, u.adress, u.email,
+										   u.user, u.password, u.website, u.short_name
 										   from inscriptions i, users_pass u
 										   where name_tourn='$tour' and category='$cat' and i.user=u.user";
 									
@@ -93,14 +94,22 @@
 									echo "<form method='POST' action='manage_data.php'>";	
 									echo "<tr><td>".$tour."</td>";
 									echo "<td>".$cat."</td>";
-									echo "<td>".$fila[2]."</td>";
+									echo "<td >".$fila[2]."</td>";
 									echo "<td>".$fila[1]."</td>";
-									echo "<td> <input class='btn btn-primary' type='submit' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $fila[1]; ?>","<?php echo $fila[3]; ?>","<?php echo $fila[4]; ?>","<?php echo $fila[5]; ?>")' <?php echo ">
+									echo "<td> <input class='btn btn-primary' type='button' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $fila[1]; ?>","<?php echo $fila[3]; ?>","<?php echo $fila[4]; ?>","<?php echo $fila[5]; ?>")' <?php echo ">
 											   <input class='btn btn-primary' type='submit' name='edit' value='Edit'>
-											   <input class='btn btn-primary' type='submit' name='delete' value='Delete'></td></tr>";
-											   echo "</form>";
+											   <input class='btn btn-primary' type='button' name='delete' value='Delete'></td></tr>";
+								    echo "<input type='hidden' value='".$fila[2]."' name='team'>
+								    	  <input type='hidden' value='".$fila[4]."' name='adress'>
+								    	  <input type='hidden' value='".$fila[6]."' name='user'>
+								    	  <input type='hidden' value='".$fila[5]."' name='email'>
+								    	  <input type='hidden' value='".$fila[7]."' name='pass'>
+								    	  <input type='hidden' value='".$fila[3]."' name='date'>
+								    	  <input type='hidden' value='".$fila[8]."' name='web'>
+								    	  <input type='hidden' value='".$fila[9]."' name='short'>";
+								    echo "</form>";
 								}	
-								//mysqli_close($conexion);
+
 							}
 
 						 ?>
@@ -109,7 +118,7 @@
 				
 			</table>
 			</div>
-
+ 
 </body>
 
 <script type="text/javascript">
