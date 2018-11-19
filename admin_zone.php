@@ -84,7 +84,7 @@
 								$log="logout.php";
 
 								$consulta="select i.name_tourn, i.participants, u.name_team, u.creation_date, u.adress, u.email,
-										   u.user, u.password, u.website, u.short_name
+										   u.user, u.password, u.website, u.short_name, i.id
 										   from inscriptions i, users_pass u
 										   where name_tourn='$tour' and category='$cat' and i.user=u.user";
 									
@@ -98,7 +98,7 @@
 									echo "<td>".$fila[1]."</td>";
 									echo "<td> <input class='btn btn-primary' type='button' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $fila[1]; ?>","<?php echo $fila[3]; ?>","<?php echo $fila[4]; ?>","<?php echo $fila[5]; ?>")' <?php echo ">
 											   <input class='btn btn-primary' type='submit' name='edit' value='Edit'>
-											   <input class='btn btn-primary' type='button' name='delete' value='Delete'></td></tr>";
+											   <input class='btn btn-primary' type='button' name='delete' value='Delete' ";?> onclick='deletee("<?php echo $fila[10]; ?>")' <?php echo "></td></tr>";
 								    echo "<input type='hidden' value='".$fila[2]."' name='team'>
 								    	  <input type='hidden' value='".$fila[4]."' name='adress'>
 								    	  <input type='hidden' value='".$fila[6]."' name='user'>
@@ -123,8 +123,10 @@
 
 <script type="text/javascript">
 	function admin(a,b,c,d,e,f,g) {
-		<?php $v="" ?>
 		alert("Team: "+a+" \nCategory: "+b+"\nTournament: "+c+"\nParticipants: "+d+"\nCreation date: "+e+"\nAdress: "+f+"\nEmail: "+g);
+	}
+	function deletee(a) {
+		location.href="delete.php?id="+a;
 	}
 </script>
 </html>
