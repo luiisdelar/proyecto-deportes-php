@@ -1,6 +1,5 @@
 <?php require("templates/header.php"); ?>
 
-<body>
 	<?php 
 
 		if (isset($_POST["login"])) {
@@ -47,37 +46,35 @@
 			
 		?>
 
-	<div class="container h-100">
-			
-		<div class="row h-100 justify-content-center align-items-center"> 
-			
-			<form class="col-md-4" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-
-				<h1 class="text-center">Login</h1>			
-				
-					<div class="form-group">
-						<label >User:</label>
-						<input class="form-control" type="text" placeholder="user" name="user">		
-					</div>
-						
-					
-					<div class="form-group">
-						<label>Password:</label>
-						<input class="form-control" type="password" placeholder="password" name="password">
-					</div>
-
-					<div class="row justify-content-center">
-						<div class="form-group">
-						<input class="btn btn-primary" type="button" value="Register" onclick="location.href='register.php';">
-						<input class="btn btn-primary" type="submit" value="Login" name="login">
-						</div>
-					</div>
-	
-			</form>
-
-		</div>
+	<div class="container">
 		
+		<div class="row align-items-center h-100 justify-content-center">
+		
+				
+				<form class="col-6" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
-	</div>
+					<h1 class="text-center">Login</h1>			
+					
+						<div class="form-group">
+							<label >User:</label>
+							<input class="form-control" type="text" placeholder="user" name="user">		
+						</div>
+							
+						
+						<div class="form-group">
+							<label>Password:</label>
+							<input class="form-control" type="password" placeholder="password" name="password">
+						</div>
+
+						<div class="row justify-content-between form-group">
+								<input class="btn btn-primary" type="button" value="Register" onclick="location.href='register.php';">
+								<input class="btn btn-primary" type="submit" value="Login" name="login">
+						</div>
+		
+				</form>
+			</div>
+		
+	</div>			
+
 
 <?php require("templates/endpage.php"); ?>
