@@ -64,7 +64,7 @@
 	
 	<div class="container h-100">
 	
-	<div class="row h-100 justify-content-center">	
+	<div class="row h-100 justify-content-center align-items-center">	
 
 	<form class="col" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		
@@ -72,87 +72,57 @@
 
 		<div class="row">
 
-			<div class="col-lg-4"> 
+			<div class="col"> 
 
 				<div class="form-group">
 					<label>Name team</label>
 					<input class="form-control" type="text" placeholder="name team" name="name_team" required="true">
 				</div>
 		
-			</div>
-
-			<div class="col-lg-4"> 
-
+		
 				<div class="form-group">
 					<label>Short name</label>
 					<input class="form-control" type="text" placeholder="short name" name="short_name" required="true">
 				</div>
 
-			</div>
-
-			<div class="col-lg-4"> 
+	
 
 				<div class="form-group">
 					<label>Creation date</label>
 					<input class="form-control" type="date" name="creation_date" required="true">
 				</div>
 
-			</div>
-
-		</div>	
 		
-		<div class="row">
-
-			<div class="col-lg-4">
-
 				<div class="form-group">
 					<label>Responsability adress</label>
 					<input class="form-control" type="text" name="adress" placeholder="responsabilty adress">
 				</div>
 
-			</div>
-				
-			<div class="col-lg-4">
-				
+		
 				<div class="form-group">
 					<label>Email</label>
 					<input class="form-control" type="email" name="email" placeholder="email" required="true">
 				</div>
 
-			</div>
-				
-			<div class="col-lg-4">
+		
 				
 				<div class="form-group">
 					<label>Website</label>		
 					<input class="form-control" typer="web" name="website" placeholder="website">
 				</div>
 
-			</div>
-				
-		</div>
-		
-		<div class="row">
-
-			<div class="col-lg-4">
 
 				<div class="form-group">
 					<label>Username</label>
 					<input class="form-control" type="text" name="user" placeholder="username" required="true">
 				</div>
 
-			</div>
-
-			<div class="col-lg-4">
 				
 				<div class="form-group">
 					<label>Password</label>
 					<input class="form-control" type="password" name="password" placeholder="password" required="true">
 				</div>
 
-			</div>	
-
-			<div class="col-lg-4">
 				
 				<div class="form-group">
 					<label>Confirm password</label>
