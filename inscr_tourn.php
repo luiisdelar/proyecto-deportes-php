@@ -3,7 +3,8 @@
 <body>
 
 	<?php 
-		
+		require("templates/navbar.php");
+
 		session_start();	
 
 		if (!isset($_SESSION["user"])){
@@ -50,9 +51,6 @@
 			<h1 class="text-center">Inscription Tournament</h1>
 			<h3 class="text-center">Bienvenid@: <?php echo $_SESSION["user"]; ?></h3>
 
-			<input class="btn btn-primary" type="button" value="Logout" onclick="location.href='logout.php';">
-			<input class="btn btn-primary" type="button" value="Return" onclick="location.href='logout.php';">
-
 		<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
 			<div class="form-group">
@@ -91,12 +89,11 @@
 				</select>
 			</div>	
 
-			<div class="form-group">
-				<input class="btn btn-primary form-control" type="submit" name="inscription" value="Inscription">
-			</div>
-
-			<div class="form-group">
-				<input class="btn btn-primary form-control" type="button" value="Tournaments List" onclick="location.href='list_tourn.php';">
+			<div class="row form-group justify-content-between">
+				
+					<input class="btn btn-primary" type="submit" name="inscription" value="Inscription">
+					<input class="btn btn-primary" type="button" value="Tournaments List" onclick="location.href='list_tourn.php';">
+				
 			</div>
 
 			<?php 

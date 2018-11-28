@@ -51,7 +51,7 @@
 		<div class="row align-items-center h-100 justify-content-center">
 		
 				
-				<form class="col-6 border border-primary rounded shadow-lg p-3 mb-5 bg-white rounded" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				<form class="col-6 border border-secondary rounded shadow-lg p-3 mb-5 bg-white rounded" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
 					<h1 class="text-center">Login</h1>			
 					

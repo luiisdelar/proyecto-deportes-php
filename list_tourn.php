@@ -4,7 +4,7 @@
 <body>
 
 	<?php 
-
+		require("templates/navbar.php");
 		session_start();	
 
 		if (!isset($_SESSION["user"])){
@@ -16,12 +16,8 @@
 	?>
 
 	<div class="container">
-		<h3>User:<?php echo $_SESSION["user"]; ?></h3>
 
-		<input class="btn btn-primary" type="button" value="Logout" onclick="location.href='logout.php';">	
-		<input class="btn btn-primary" type="button" value="Return" onclick="location.href='inscr_tourn.php';">	
-
-		<h2>Torneos donde esta inscrito: </h2>	
+		<h2 class="text-center">Tournaments List</h2>	
 		<?php 
 						$user=$_SESSION["user"];
 
