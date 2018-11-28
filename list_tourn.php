@@ -4,7 +4,7 @@
 <body>
 
 	<?php 
-		require("templates/navbar.php");
+		require("templates/navbar2.php");
 		session_start();	
 
 		if (!isset($_SESSION["user"])){

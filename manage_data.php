@@ -49,16 +49,15 @@
 ?>
 
 <body>
-	
+	<?php require("templates/navbar2.php"); ?>
 	<div class="container h-100">
 	
-	<div class="row h-100 justify-content-center">	
+	<div class="row justify-content-center">	
 
-	<form class="col" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+	<form class="col border border-secondary rounded shadow-lg p-3 mb-5 bg-white rounded" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		<h1 class="text-center">Admin Zone</h1>
 		<h3 class="text-center">Editing Register</h1>
-		<input class="btn btn-primary" type="button" value="Logout" onclick="location.href='logout.php';">
-		<input class="btn btn-primary" type="button" value="Return" onclick="location.href='inscr_tourn.php';">
+		
 		<div class="row">
 
 			<div class="col-lg-4"> 
@@ -158,7 +157,6 @@
 
 			</div>	
 
-		
 		</div>
 
 	</form>

@@ -11,10 +11,7 @@
 	 		<h1 class="text-center">Admin Zone</h1>
 			<h3 class="text-center">Bienvenid@: <?php echo $_SESSION["user"]; ?></h3>
 
-			<input class="btn btn-primary" type="button" value="Logout" onclick="location.href='logout.php';">
-			<input class="btn btn-primary" type="button" value="Return" onclick="location.href='logout.php';">
-
-
+	
 			<form class="row" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				<div class="col-4">
 					<h3>Tournaments:</h3>
