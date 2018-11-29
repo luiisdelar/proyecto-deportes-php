@@ -15,22 +15,56 @@
 				$pass=trim($_POST["password"]);
 
 				if (empty($short_name) || empty($name_team) || empty($creation) || empty($email) || empty($user) || empty($pass)) {
-					header("location:err_register.php");
+					echo "<script> alert('Error. Do not leave empty fields'); location.href ='register.php' </script>";
 					exit();
 				}
 
-				require("data_connection.php");	
+				//mezcla de pdo con msqli xd	
+				try {
+					require("data_connection.php");	
 
-				$conexion=mysqli_connect($db_host,$db_usuario,$db_pass,$db_nombre);
+					$conexion=mysqli_connect($db_host,$db_usuario,$db_pass,$db_nombre);
 
-				if (mysqli_connect_errno()) {
+					$base=new PDO("mysql:host=localhost; dbname=proyectodeportes","root","");
+
+					$base->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+					$base->exec("set character set utf8");
+					
+					$consulta="select user from users_pass";
+
+					$resultados=mysqli_query($conexion,$consulta);
+
+					while($fila=mysqli_fetch_row($resultados)){
+
+						if (strcasecmp($fila[0],$user)===0) {
+							echo "<script>alert('El usuario ya existe'); location.href ='register.php'; </script>";
+							exit();
+						}
+
+					}
+
+					$sql="insert into users_pass (user, password, name_team, short_name, creation_date, adress, email, website) values ('$user','$pass','$name_team','$short_name','$creation','$adress','$email','$website')";
+
+					$resultado=$base->prepare($sql);
+
+					$resultado->execute();
+
+					$resultado->closeCursor();
+
+					echo "<script> alert('Registrado con exito'); 
+							location.href='index.php'; </script>";
+					
+					exit();
+
+				} catch (Exception $e) {
 					echo "<script> alert('Error al conectar con la base de datos'); </script>";
 					exit();
 				}
-
-				mysqli_set_charset($conexion,"utf8");
 				
-				$consulta="select user from users_pass";
+				
+				
+				/*$consulta="select user from users_pass";
 
 				$resultados=mysqli_query($conexion,$consulta);
 
@@ -43,7 +77,7 @@
 
 				}
 
-				$consulta="insert into users_pass (user, password, name_team, short_name, creation_date, adress, email, website) values ('$user','$pass','$name_team','$short_name','$creation','$adress','$email','$website')";
+				
 
 				$resultados=mysqli_query($conexion,$consulta);
 
@@ -55,7 +89,7 @@
 
 				}
 
-				mysqli_close($conexion);
+				mysqli_close($conexion);*/
 
 		}
 

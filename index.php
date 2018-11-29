@@ -10,6 +10,8 @@
 
 				$base->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
+				$base->exec("set character set utf8");
+
 				$sql="select * from users_pass where user= :user and password= :password";
 
 				$resultado=$base->prepare($sql);
@@ -35,11 +37,17 @@
 					header("location:inscr_tourn.php");
 
 				}else{
-					echo "<h3>Usuario no encontrado</h3>";	
+					echo "<script>alert('Invalid username or password');
+						  location.href ='index.php';</script>";
+					exit();	
 				}		
 
 			}catch(Exception $e){
+
 				die("Error: " . $e->getMessage());
+
+			}finally{
+				$base=null;
 			}
 
 		}	
