@@ -4,7 +4,7 @@
 <body>
 
 	<?php 
-		require("templates/navbar2.php");
+		
 		session_start();	
 
 		if (!isset($_SESSION["user"])){
@@ -13,6 +13,8 @@
 
 		}
 
+		require("templates/navbar2.php");
+		
 	?>
 
 	<div class="container">

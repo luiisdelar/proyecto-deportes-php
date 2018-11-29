@@ -51,7 +51,7 @@
 			}
 
 		}	
-			
+			require("templates/navbar3.php");
 		?>
 
 	<div class="container">

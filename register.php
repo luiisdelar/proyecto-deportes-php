@@ -61,41 +61,14 @@
 					echo "<script> alert('Error al conectar con la base de datos'); </script>";
 					exit();
 				}
-				
-				
-				
-				/*$consulta="select user from users_pass";
-
-				$resultados=mysqli_query($conexion,$consulta);
-
-				while($fila=mysqli_fetch_row($resultados)){
-
-					if (strcasecmp($fila[0],$user)===0) {
-						echo "<script>alert('El usuario ya existe'); location.href ='index.php'; </script>";
-						exit();
-					}
-
-				}
-
-				
-
-				$resultados=mysqli_query($conexion,$consulta);
-
-				if (!$resultados) {
-					echo "Error en la consulta";
-				}else{
-					echo "<script> alert('Equipo registrado con exito'); location.href ='index.php' </script>";
-					exit();
-
-				}
-
-				mysqli_close($conexion);*/
+			
+				//mysqli_close($conexion);*/
 
 		}
 
 
 	 ?>
-	
+	<?php require("templates/navbar3.php"); ?>
 	<div class="container h-100">
 	
 	<div class="row h-100 justify-content-center align-items-center">	
@@ -165,14 +138,14 @@
 			<div class="col">	
 				<div class="form-group">
 					<label>Password</label>
-					<input class="form-control" type="password" name="password" placeholder="password" required="true">
+					<input class="form-control" type="password" name="password" placeholder="password" id="password" required="true">
 				</div>
 			</div>
 			
 			<div class="col">	
 				<div class="form-group">
 					<label>Confirm password</label>
-					<input class="form-control" type="password" placeholder="confirm password" required="true">
+					<input class="form-control" type="password" placeholder="confirm password" id="confirm_password" required="true">
 				</div>
 			</div>
 		
@@ -204,5 +177,23 @@
 	</div>
 
 	</div>
+
+	<script type="text/javascript">
+
+		var password = document.getElementById("password")
+  		var confirm_password = document.getElementById("confirm_password");
+
+		function validatePassword(){
+		  if(password.value != confirm_password.value) {
+		    confirm_password.setCustomValidity("Passwords Don't Match");
+		  } else {
+		    confirm_password.setCustomValidity('');
+		  }
+		}
+
+		password.onchange = validatePassword;
+		confirm_password.onkeyup = validatePassword;
+
+	</script>
 
 <?php require("templates/endpage.php"); ?>

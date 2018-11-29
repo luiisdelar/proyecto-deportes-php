@@ -3,7 +3,7 @@
 <body>
 
 	<?php 
-		require("templates/navbar.php");
+		
 
 		session_start();	
 
@@ -13,6 +13,8 @@
 
 		}
 
+		require("templates/navbar.php");
+	 
 	 ?>
 
 	<div class="container">
@@ -49,7 +51,7 @@
 		?>
 
 			<h1 class="text-center">Inscription Tournament</h1>
-			<h3 class="text-center">Bienvenid@: <?php echo $_SESSION["user"]; ?></h3>
+			
 
 		<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
@@ -77,7 +79,7 @@
 
 			<div class="form-group">
 				<label>Participants numbers</label>
-				<input class="form-control" type="number" name="participants" placeholder="participants numbers">
+				<input class="form-control" type="number" required="true" name="participants" placeholder="participants numbers">
 			</div>
 
 			<div class="form-group">
@@ -107,6 +109,12 @@
 					$part=$_POST["participants"];
 					$cat=$_POST["category"];
 					$user=$_SESSION["user"];
+
+					if(!is_numeric($part) || !is_int($part) || $part<=0 ){
+
+						echo "<script>alert('Only interger numeric values in participants'); location.href='inscr_tourn.php';</script>";
+						exit();
+					}
 
 					require("data_connection.php");	
 						

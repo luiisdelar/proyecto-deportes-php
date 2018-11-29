@@ -9,8 +9,6 @@
 <body>
 
 	 		<h1 class="text-center">Admin Zone</h1>
-			<h3 class="text-center">Bienvenid@: <?php echo $_SESSION["user"]; ?></h3>
-
 	
 			<form class="row" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				<div class="col-4">
@@ -66,7 +64,7 @@
 					    <th>Category</th>
 					    <th>Team Name</th>
 					    <th>Participants</th>
-					 	<th>Aux</th>
+					 	<th>Admin</th>
 					 </tr>
 				</thead>
 
@@ -93,9 +91,9 @@
 									echo "<td>".$cat."</td>";
 									echo "<td >".$fila[2]."</td>";
 									echo "<td>".$fila[1]."</td>";
-									echo "<td> <input class='btn btn-primary' type='button' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $fila[1]; ?>","<?php echo $fila[3]; ?>","<?php echo $fila[4]; ?>","<?php echo $fila[5]; ?>")' <?php echo ">
-											   <input class='btn btn-primary' type='submit' name='edit' value='Edit'>
-											   <input class='btn btn-primary' type='button' name='delete' value='Delete' ";?> onclick='deletee("<?php echo $fila[10]; ?>")' <?php echo "></td></tr>";
+									echo "<td> <input class='btn btn-success' type='button' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $fila[1]; ?>","<?php echo $fila[3]; ?>","<?php echo $fila[4]; ?>","<?php echo $fila[5]; ?>")' <?php echo ">
+											   <input class='btn btn-warning' type='submit' name='edit' value='Edit'>
+											   <input class='btn btn-danger' type='button' name='delete' value='Delete' ";?> onclick='deletee("<?php echo $fila[10]; ?>")' <?php echo "></td></tr>";
 								    echo "<input type='hidden' value='".$fila[2]."' name='team'>
 								    	  <input type='hidden' value='".$fila[4]."' name='adress'>
 								    	  <input type='hidden' value='".$fila[6]."' name='user'>
