@@ -87,8 +87,15 @@
 					<option value="2">Amateur</option>
 					<option value="3">Profesional</option>
 				</select>
-			</div>	
+			</div>
 
+			<div class="row form-group justify-content-between">
+				
+					<input class="btn btn-primary" type="submit" name="inscription" value="Inscription">
+					<input class="btn btn-primary" type="button" value="Tournaments List" onclick="location.href='list_tourn.php';">
+				
+			</div>
+			
 			<?php 
 
 				if (isset($_POST["inscription"])) {
