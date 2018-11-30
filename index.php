@@ -75,8 +75,13 @@
 						</div>
 
 						<div class="row justify-content-between form-group">
-								<input class="btn btn-primary" type="button" value="Register" onclick="location.href='register.php';">
-								<input class="btn btn-primary" type="submit" value="Login" name="login">
+								<div class="col-6"> 
+									<input class="btn btn-primary form-control" type="button" value="Register" onclick="location.href='register.php';">
+								</div>
+								
+								<div class="col-6"> 	
+									<input class="btn btn-primary form-control" type="submit" value="Login" name="login">
+								</div>
 						</div>
 		
 				</form>

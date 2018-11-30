@@ -95,10 +95,13 @@
 
 
 			<div class="row form-group justify-content-between">
-				
-					<input class="btn btn-primary" type="submit" name="inscription" value="Inscription">
-					<input class="btn btn-primary" type="button" value="Tournaments List" onclick="location.href='list_tourn.php';">
-				
+				<div class="col-6"> 
+					<input class="btn btn-primary form-control" type="submit" name="inscription" value="Inscription">
+				</div>
+
+				<div class="col-6">
+					<input class="btn btn-primary form-control" type="button" value="Tournaments List" onclick="location.href='list_tourn.php';">
+				</div>
 			</div>
 
 			<?php 
