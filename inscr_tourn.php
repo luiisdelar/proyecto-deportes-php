@@ -26,25 +26,11 @@
 
 			require("data_connection.php");
 						
-			$conexion=mysqli_connect($db_host,$db_usuario,$db_pass,$db_nombre);
+			$registros=$base->query("select * from users_pass where user='$user'")->fetchAll(PDO::FETCH_OBJ);
 
-			if (mysqli_connect_errno()) {
-				echo "<script> alert('Error al conectar con la base de datos'); </script>";
-				exit();
-			}
-
-			mysqli_set_charset($conexion,"utf8");
-
-			$consulta="select * from users_pass where user='$user'";
-
-			$resultados=mysqli_query($conexion,$consulta);
-			
-			$fila=mysqli_fetch_row($resultados);
-			
-			if (strcasecmp($fila[9],"admin")===0) {
-				
-				include("admin_zone.php");
-		
+			if ($registros[0]->type=="admin") {
+					
+				include("admin_zone.php");		
 				mysqli_close($conexion);	
 
 			}else{
@@ -61,21 +47,21 @@
 
 					<?php 
 						
-						$consulta="select * from tournaments";
+						$registros=$base->query("select * from tournaments")->fetchAll(PDO::FETCH_OBJ);	
+						foreach ($registros as $x): 
+					
+					?>
+													
+						<option value='<?php echo $x->name_tourn;?>'> <?php echo $x->name_tourn;?> </option>
 
-						$resultados=mysqli_query($conexion,$consulta);
-
-						while($fila=mysqli_fetch_row($resultados)){
-
-							echo "<option value='" . $fila[1] . "'>" . $fila[1] . "</option>";
-
-						}
-
-						mysqli_close($conexion);
-					 ?>	
+					<?php 
+					
+						endforeach; 
+					
+					?>	
 
 				</select>
-			</div>
+			</div>	
 
 			<div class="form-group">
 				<label>Participants numbers</label>
@@ -110,28 +96,32 @@
 					$cat=$_POST["category"];
 					$user=$_SESSION["user"];
 
-					if(!is_numeric($part) || !is_int($part) || $part<=0 ){
 
+					if(!is_numeric($part) || $part<=0 ){
 						echo "<script>alert('Only interger numeric values in participants'); location.href='inscr_tourn.php';</script>";
 						exit();
 					}
 
 					require("data_connection.php");	
 						
-					$conexion=mysqli_connect($db_host,$db_usuario,$db_pass,$db_nombre);
+					$registros=$base->query("select name_tourn,category from inscriptions where user='$user'")->fetchAll(PDO::FETCH_OBJ);
+					
+					foreach ($registros as $y) {
+						
+						if (strcasecmp($y->name_tourn,$tourn)==0 && strcasecmp($y->category,$cat)==0) {
 
-					if (mysqli_connect_errno()) {
-						echo "<script> alert('Error al conectar con la base de datos'); </script>";
-						exit();
+							echo "<script> alert('Equipo ya inscrito en ese torneo y en esa categoria'); location.href ='list_tourn.php'; </script>";
+							exit();
+			
+						}
+
 					}
 
-					mysqli_set_charset($conexion,"utf8");
+					$registros=$base->query("insert into inscriptions (name_tourn, participants, category, user) values ('$tourn','$part','$cat','$user')")->fetchAll(PDO::FETCH_OBJ);
 
-					$consulta="select name_tourn,category from inscriptions where user='$user' ";
+					echo "<script> alert('Equipo inscrito con exito'); location.href ='list_tourn.php'; </script>";
 
-					$resultados=mysqli_query($conexion,$consulta);
-
-					while($fila=mysqli_fetch_row($resultados)){
+					/*while($fila=mysqli_fetch_row($resultados)){
 
 						if (strcasecmp($fila[0],$tourn)===0 && strcasecmp($fila[1],$cat)===0) {
 							
@@ -142,7 +132,7 @@
 					}
 
 					$consulta="insert into inscriptions (name_tourn, participants, category, user) values ('$tourn','$part','$cat','$user')";
-
+	
 					$resultados=mysqli_query($conexion,$consulta);
 
 					if (!$resultados) {
@@ -153,9 +143,9 @@
 
 						echo "<script> alert('Equipo inscrito con exito'); location.href ='list_tourn.php'; </script>";
 					}
-
 					
-					msqli_close($conexion);	
+					
+					msqli_close($conexion);*/	
 				}
 				
 			 ?>
