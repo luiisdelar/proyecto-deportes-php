@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
   
-  <div class="justify-content-center">
+  <div>
     
       <a class="navbar-brand" href="index.php">
         <img src="icon.png" width="30" height="30" alt="">
@@ -10,7 +10,7 @@
   
   </div>
 
-  <div class="collapse navbar-collapse justify-content-end">
+  <div class="justify-content-end">
     
     <div class="justify-content-end">
           <a class="navbar-brand" href="">User: <?php echo $_SESSION["user"]; ?></a>
