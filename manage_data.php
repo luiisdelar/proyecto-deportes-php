@@ -10,15 +10,6 @@
 
 			require("data_connection.php");
 		
-			$conexion=mysqli_connect($db_host,$db_usuario,$db_pass,$db_nombre);
-
-			if (mysqli_connect_errno()) {
-				echo "<script> alert('Error al conectar con la base de datos'); </script>";
-				exit();
-			}
-
-			mysqli_set_charset($conexion,"utf8");
-
 			$name_team=$_POST["name_team"];
 			$short_name=trim($_POST["short_name"]);
 			$creation=$_POST["creation_date"];
@@ -28,22 +19,21 @@
 			$user=trim($_POST["user"]);
 			$pass=trim($_POST["password"]);
 
-			$consulta="update users_pass 
+			$sql="update users_pass 
 					   set name_team='$name_team', short_name='$short_name', creation_date='$creation',
 					   adress='$adress', email='$email', website='$website'
 					   where user='$user'";
 
-			$resultados=mysqli_query($conexion,$consulta);
-			
-				if (!$resultados) {
-					echo "Error saving";
-				}else{
-					echo "<script> alert('Datos editados'); location.href ='inscr_tourn.php' </script>";
-					exit();
+			$resultado=$base->prepare($sql);
 
-				}
+			$resultado->execute();
 
-				mysqli_close($conexion);
+			if (!$resultado) {
+				echo "Error saving";
+			}else{
+				echo "<script> alert('Datos editados'); location.href ='inscr_tourn.php' </script>";
+				exit();
+			}
 
 	}
 ?>

@@ -19,22 +19,12 @@
 			<?php 
 					require("data_connection.php");	
 
-					$conexion=mysqli_connect($db_host,$db_usuario,$db_pass,$db_nombre);
+					$registros=$base->query("select * from tournaments")->fetchAll(PDO::FETCH_OBJ);
 
-					if (mysqli_connect_errno()) {
-						echo "<script> alert('Error al conectar con la base de datos'); </script>";
-						exit();
+					foreach ($registros as $tor) {
+						echo "<option value='" . $tor->name_tourn. "'>" . $tor->name_tourn . "</option>";
 					}
 
-					mysqli_set_charset($conexion,"utf8");
-
-					$consulta="select * from tournaments";
-
-					$resultados=mysqli_query($conexion,$consulta);
-
-					while($fila=mysqli_fetch_row($resultados)){
-						echo "<option value='" . $fila[1] . "'>" . $fila[1] . "</option>";
-					}	
 			 ?>
 			</select>
 			</div>
@@ -78,33 +68,42 @@
 								$cat=$_POST["cat"];
 								$log="logout.php";
 
-								$consulta="select i.name_tourn, i.participants, u.name_team, u.creation_date, u.adress, u.email,
+								$registros=$base->query("select i.name_tourn, i.participants, u.name_team, u.creation_date, u.adress, u.email,
 										   u.user, u.password, u.website, u.short_name, i.id
 										   from inscriptions i, users_pass u
-										   where name_tourn='$tour' and category='$cat' and i.user=u.user";
-									
-								$resultados=mysqli_query($conexion,$consulta);
+										   where name_tourn='$tour' and category='$cat' and i.user=u.user")->fetchAll(PDO::FETCH_OBJ);
 
-								while($fila=mysqli_fetch_row($resultados)){
-									echo "<form method='POST' action='manage_data.php'>";	
-									echo "<tr><td>".$tour."</td>";
-									echo "<td>".$cat."</td>";
-									echo "<td >".$fila[2]."</td>";
-									echo "<td>".$fila[1]."</td>";
-									echo "<td> <input class='btn btn-success' type='button' name='details' value='Details' "; ?> onclick='admin("<?php echo $fila[2]; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $fila[1]; ?>","<?php echo $fila[3]; ?>","<?php echo $fila[4]; ?>","<?php echo $fila[5]; ?>")' <?php echo ">
-											   <input class='btn btn-warning' type='submit' name='edit' value='Edit'>
-											   <input class='btn btn-danger' type='button' name='delete' value='Delete' ";?> onclick='deletee("<?php echo $fila[10]; ?>")' <?php echo "></td></tr>";
-								    echo "<input type='hidden' value='".$fila[2]."' name='team'>
-								    	  <input type='hidden' value='".$fila[4]."' name='adress'>
-								    	  <input type='hidden' value='".$fila[6]."' name='user'>
-								    	  <input type='hidden' value='".$fila[5]."' name='email'>
-								    	  <input type='hidden' value='".$fila[7]."' name='pass'>
-								    	  <input type='hidden' value='".$fila[3]."' name='date'>
-								    	  <input type='hidden' value='".$fila[8]."' name='web'>
-								    	  <input type='hidden' value='".$fila[9]."' name='short'>";
-								    echo "</form>";
-								}	
 
+								foreach ($registros as $tor): ?>
+								
+									<form method="POST" action="manage_data.php">
+										<tr>
+											<td><?php echo $tour; ?></td>
+											<td><?php echo $cat; ?></td>
+											<td><?php echo $tor->name_team; ?></td>
+											<td><?php echo $tor->participants; ?></td>
+											<td>
+												<input class="btn btn-success" type="button" name="details" value="Details" onclick='admin("<?php echo $tor->name_team; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $tor->participants; ?>","<?php echo $tor->creation_date; ?>","<?php echo $tor->adress; ?>","<?php echo $tor->email; ?>")'> 
+												<input class='btn btn-warning' type='submit' name='edit' value='Edit'>
+												<input class="btn btn-danger" type="button" name="delete" value="Delete" onclick='deletee("<?php echo $tor->id; ?>")'>
+												<input type='hidden' value="<?php echo $tor->name_team; ?>" name='team'>
+										    	<input type='hidden' value="<?php echo $tor->adress; ?>" name='adress'>
+										     	<input type='hidden' value="<?php echo $tor->user; ?>" name='user'>
+										    	<input type='hidden' value="<?php echo $tor->email; ?>" name='email'>
+										    	<input type='hidden' value="<?php echo $tor->password; ?>" name='pass'>
+										    	<input type='hidden' value="<?php echo $tor->creation_date; ?>" name='date'>
+										    	<input type='hidden' value="<?php echo $tor->website; ?>" name='web'>
+										    	<input type='hidden' value="<?php echo $tor->short_name; ?>" name='short'>
+										    
+											</td>
+										</tr>	
+
+
+									</form>
+
+
+								<?php
+								endforeach;	
 							}
 
 						 ?>

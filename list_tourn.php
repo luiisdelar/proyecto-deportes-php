@@ -25,15 +25,6 @@
 
 						require("data_connection.php");
 						
-						$conexion=mysqli_connect($db_host,$db_usuario,$db_pass,$db_nombre);
-
-						if (mysqli_connect_errno()) {
-							echo "<script> alert('Error al conectar con la base de datos'); </script>";
-							exit();
-						}
-
-						mysqli_set_charset($conexion,"utf8");
-				
 						?>
 						<div class="table-responsive">
 							<table class="table table-dark table-striped table-bordered table-hover">
@@ -49,28 +40,27 @@
 								<tbody>
 									<?php 
 
-										$consulta="select * from inscriptions where user='$user' ";
-										$resultados=mysqli_query($conexion,$consulta);
+										$registros=$base->query("select * from inscriptions where user='$user'")->fetchAll(PDO::FETCH_OBJ);
 
-										while($fila=mysqli_fetch_row($resultados)){
-										
-											echo "<tr><td>".$fila[1]."</td>";
-											echo "<td>".$fila[2]."</td>";
+										foreach ($registros as $tor) {
+											
+											echo "<tr><td>".$tor->name_tourn."</td>";
+											echo "<td>".$tor->participants."</td>";
 
-												if ($fila[3]==1) {
-													echo "<td>Beginner</td></tr>";
-												}
-												if ($fila[3]==2) {
-													echo "<td>Amateur</td></tr>";
-												}
-												if ($fila[3]==3) {
-													echo "<td>Professional</td></tr>";
-												}
 
-										}	
+											if ($tor->category==1) {
+												echo "<td>Beginner</td></tr>";	
+											}
+											if ($tor->category==2) {
+												echo "<td>Amateur</td></tr>";	
+											}
+											if ($tor->category==3) {
+												echo "<td>Professional</td></tr>";	
+											}
 
-										mysqli_close($conexion);
-					 				?>	
+										}
+
+				 				?>	
 								</tbody>
 
 							</table>

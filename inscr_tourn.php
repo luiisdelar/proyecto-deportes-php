@@ -31,8 +31,7 @@
 			if ($registros[0]->type=="admin") {
 					
 				include("admin_zone.php");		
-				mysqli_close($conexion);	
-
+				
 			}else{
 		?>
 
@@ -120,35 +119,14 @@
 
 					}
 
-					$registros=$base->query("insert into inscriptions (name_tourn, participants, category, user) values ('$tourn','$part','$cat','$user')")->fetchAll(PDO::FETCH_OBJ);
+					$sql="insert into inscriptions (name_tourn, participants, category, user) values ('$tourn','$part','$cat','$user')";
+
+					$resultado=$base->prepare($sql);
+
+					$resultado->execute();
 
 					echo "<script> alert('Equipo inscrito con exito'); location.href ='list_tourn.php'; </script>";
 
-					/*while($fila=mysqli_fetch_row($resultados)){
-
-						if (strcasecmp($fila[0],$tourn)===0 && strcasecmp($fila[1],$cat)===0) {
-							
-							echo "<script> alert('Equipo ya inscrito en ese torneo y en esa categoria'); location.href ='list_tourn.php'; </script>";
-							exit();
-						}
-
-					}
-
-					$consulta="insert into inscriptions (name_tourn, participants, category, user) values ('$tourn','$part','$cat','$user')";
-	
-					$resultados=mysqli_query($conexion,$consulta);
-
-					if (!$resultados) {
-							
-						echo "<script> alert('ERRORRRR'); </script>";
-										
-					}else{
-
-						echo "<script> alert('Equipo inscrito con exito'); location.href ='list_tourn.php'; </script>";
-					}
-					
-					
-					msqli_close($conexion);*/	
 				}
 				
 			 ?>
