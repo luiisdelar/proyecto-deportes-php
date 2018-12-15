@@ -40,21 +40,52 @@
 								<tbody>
 									<?php 
 
-										$registros=$base->query("select * from inscriptions where user='$user'")->fetchAll(PDO::FETCH_OBJ);
-
-										foreach ($registros as $tor) {
+										$tamanho_pag=3;
 											
-											echo "<tr><td>".$tor->name_tourn."</td>";
-											echo "<td>".$tor->participants."</td>";
+											if (isset($_GET["pagination"])) {
+
+												if ($_GET["pagination"]==1) {
+													$pagina=1;
+													header("location:list_tourn.php");
+												}else{
+													$pagina=$_GET["pagination"];
+												}
 
 
-											if ($tor->category==1) {
+											}else{
+												$pagina=1;
+											}
+
+										$desde=($pagina-1)*$tamanho_pag;
+
+										$sql="select * from inscriptions where user='$user'";
+
+										$resultado=$base->prepare($sql);
+
+										$resultado->execute();
+
+										$num_filas=$resultado->rowCount();
+
+										$totalpaginas=ceil($num_filas/$tamanho_pag);
+
+										$sql2="select * from inscriptions where user='$user' limit $desde,$tamanho_pag";
+											
+										$resultado=$base->prepare($sql2);
+
+										$resultado->execute();
+											
+										while ($registros=$resultado->fetch(PDO::FETCH_ASSOC)) {
+											
+											echo "<tr><td>".$registros["name_tourn"]."</td>";
+											echo "<td>".$registros["participants"]."</td>";
+
+											if ($registros["category"]==1) {
 												echo "<td>Beginner</td></tr>";	
 											}
-											if ($tor->category==2) {
+											if ($registros["category"]==2) {
 												echo "<td>Amateur</td></tr>";	
 											}
-											if ($tor->category==3) {
+											if ($registros["category"]==3) {
 												echo "<td>Professional</td></tr>";	
 											}
 
@@ -64,6 +95,66 @@
 								</tbody>
 
 							</table>
+
+							<nav aria-label="...">
+								 <ul class="pagination">
+								  	
+								    <?php  
+
+								    	if (isset($_GET["pagination"])) {
+								    		?>
+								    		  	<li class="page-item">
+								    			  <a class="page-link" href="?pagination=<?php echo $_GET['pagination']-1; ?>" tabindex="-1">Previous</a>
+								    			</li>
+								    		<?php
+								    	}else{
+								    		?>
+								    			<li class="page-item disabled">
+								    			  <a class="page-link" tabindex="-1">Previous</a>
+								    			</li>
+								    		<?php	
+								    	}
+
+								    ?>
+
+
+
+									<?php for ($i=1; $i <= $totalpaginas; $i++) :?>
+										<li class="page-item">
+											<a class="page-link" href="?pagination=<?php echo $i; ?>"><?php echo $i; ?></a>
+										</li>
+								    <?php endfor; ?>	
+
+									<?php  
+
+										if (isset($_GET["pagination"]) && $_GET["pagination"]==$totalpaginas) {
+											?>
+												<li class="page-item disabled">
+											      <a class="page-link">Next</a>
+											    </li>
+											<?php
+										}else{
+											
+												if (isset($_GET["pagination"])) {
+													?>	
+														<li class="page-item">
+													      <a class="page-link" href="?pagination=<?php echo $_GET["pagination"]+1; ?>">Next</a>
+													    </li>
+													<?php
+												}else{
+													?>
+														<li class="page-item">
+													      <a class="page-link" href="?pagination=2">Next</a>
+													    </li>
+													<?php
+												}
+										}
+
+									?>								   
+
+								  </ul>
+							</nav>
+
 						</div>
 						
 
