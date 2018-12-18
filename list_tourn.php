@@ -120,7 +120,15 @@
 
 
 									<?php for ($i=1; $i <= $totalpaginas; $i++) :?>
-										<li class="page-item">
+										
+										<?php 
+											if ($pagina==$i) {
+												echo "<li class='page-item active'>";		
+											}else{
+												echo "<li class='page-item'>";											
+											}
+										?>
+										
 											<a class="page-link" href="?pagination=<?php echo $i; ?>"><?php echo $i; ?></a>
 										</li>
 								    <?php endfor; ?>	
