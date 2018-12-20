@@ -75,18 +75,12 @@
 									$cat=$_GET["cat"];
 								}
 
-								$tamanho_pag=3;	
+								$tamanho_pag=4;	
 
 								if (isset($_GET["pagination"])) {
 
-									if ($_GET["pagination"]==1) {
-											$pagina=1;
-											header("location:list_tourn.php");		
-									}else{
-											$pagina=$_GET["pagination"];
-									 }
-
-
+									$pagina=$_GET["pagination"];
+									
 								}else{
 										$pagina=1;
 								}

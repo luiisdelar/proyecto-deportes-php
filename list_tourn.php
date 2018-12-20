@@ -40,7 +40,7 @@
 								<tbody>
 									<?php 
 
-										$tamanho_pag=3;
+										$tamanho_pag=4;
 											
 											if (isset($_GET["pagination"])) {
 
