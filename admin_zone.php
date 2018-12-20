@@ -64,12 +64,13 @@
 
 							if (isset($_POST["consult"]) || isset($_GET["pagination"])) {
 
-								$log="logout.php";
 
 								if (isset($_POST["consult"])) {
 									$tour=$_POST["tour"];
 									$cat=$_POST["cat"];
-								}else{
+								}
+
+								if(isset($_GET["pagination"])){
 									$tour=$_GET["tour"];
 									$cat=$_GET["cat"];
 								}
@@ -81,7 +82,6 @@
 									if ($_GET["pagination"]==1) {
 											$pagina=1;
 											header("location:list_tourn.php");		
-
 									}else{
 											$pagina=$_GET["pagination"];
 									 }
@@ -159,6 +159,8 @@
 				
 			</table>
 
+			<?php if (isset($totalpaginas)): ?>	
+			
 			<nav aria-label="...">
 		
 				 <ul class="pagination">
@@ -168,7 +170,7 @@
 				    	?>
 
 					    <li class="page-item">
-				    		<a class="page-link" href="?pagination=<?php echo $_GET['pagination']-1; ?>?tour=<?php echo $tour; ?>?cat=<?php echo $cat; ?>" tabindex="-1">Previous</a>
+				    		<a class="page-link" href="?pagination=<?php echo $_GET['pagination']-1; ?>&tour=<?php echo $tour; ?>&cat=<?php echo $cat; ?>" tabindex="-1">Previous</a>
 				   		</li>
 	
 						<?php
@@ -193,7 +195,7 @@
 											}
 										?>
 										
-											<a class="page-link" href="?pagination=<?php echo $i; ?>?tour=<?php echo $tour; ?>?cat=<?php echo $cat; ?>"><?php echo $i; ?></a>
+											<a class="page-link" href="?pagination=<?php echo $i; ?>&tour=<?php echo $tour; ?>&cat=<?php echo $cat; ?>"><?php echo $i; ?></a>
 										</li>
 								    <?php endfor; ?>	
 
@@ -210,13 +212,13 @@
 												if (isset($_GET["pagination"])) {
 													?>	
 														<li class="page-item">
-													      <a class="page-link" href="?pagination=<?php echo $_GET["pagination"]+1; ?>?tour=<?php echo $tour; ?>?cat=<?php echo $cat; ?>">Next</a>
+													      <a class="page-link" href="?pagination=<?php echo $_GET["pagination"]+1; ?>&tour=<?php echo $tour; ?>&cat=<?php echo $cat; ?>">Next</a>
 													    </li>
 													<?php
 												}else{
 													?>
 														<li class="page-item">
-													      <a class="page-link" href="?pagination=2tour=<?php echo $tour; ?>cat=<?php echo $cat; ?>">Next</a>
+													      <a class="page-link" href="?pagination=2&tour=<?php echo $tour; ?>&cat=<?php echo $cat; ?>">Next</a>
 													    </li>
 													<?php
 												}
@@ -227,7 +229,7 @@
 								  </ul>
 							</nav>
 
-
+			<?php endif ?>
 			
 			</div>
  

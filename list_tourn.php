@@ -104,7 +104,7 @@
 								    	if (isset($_GET["pagination"])) {
 								    		?>
 								    		  	<li class="page-item">
-								    			  <a class="page-link" href="?pagination=<?php echo $_GET['pagination']-1; ?>" tabindex="-1">Previous</a>
+								    			  <a class="page-link" href="?pagination=<?php echo $_GET['pagination']-1; ?>" >Previous</a>
 								    			</li>
 								    		<?php
 								    	}else{
