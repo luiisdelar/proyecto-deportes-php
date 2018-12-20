@@ -135,7 +135,7 @@
 
 									<?php  
 
-										if (isset($_GET["pagination"]) && $_GET["pagination"]==$totalpaginas) {
+										if (isset($_GET["pagination"]) && $_GET["pagination"]==$totalpaginas || $totalpaginas==1) {
 											?>
 												<li class="page-item disabled">
 											      <a class="page-link">Next</a>

@@ -100,8 +100,32 @@
 
 
 					if(!is_numeric($part) || $part<=0 ){
-						echo "<script>alert('Only interger numeric values in participants'); location.href='inscr_tourn.php';</script>";
-						exit();
+						?>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Inscription error</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <p>Only interger numeric values in participants</p>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						
+						<script>$('#exampleModal').modal('show');</script>
+
+						<?php
+						exit();	
 					}
 
 					require("data_connection.php");	
@@ -112,7 +136,30 @@
 						
 						if (strcasecmp($y->name_tourn,$tourn)==0 && strcasecmp($y->category,$cat)==0) {
 
-							echo "<script> alert('Equipo ya inscrito en ese torneo y en esa categoria'); location.href ='list_tourn.php'; </script>";
+							?>
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalLabel">Inscription error</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								        <p>Team already registered in that tournament and in that category</p>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+						
+								<script>$('#exampleModal').modal('show');  </script>
+							<?php
+
 							exit();
 			
 						}

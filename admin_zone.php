@@ -15,7 +15,6 @@
 					<h3>Tournaments:</h3>
 					<select class="form-control" name="tour">
 				
-				
 			<?php 
 					require("data_connection.php");	
 
@@ -115,6 +114,7 @@
 										   from inscriptions i, users_pass u
 										   where name_tourn='$tour' and category='$cat' and i.user=u.user")->fetchAll(PDO::FETCH_OBJ);
 								*/								
+								$cont=1;
 
 								while ($registros=$resultado->fetch(PDO::FETCH_ASSOC)) {
 										 ?>
@@ -126,7 +126,7 @@
 											<td><?php echo $registros["name_team"]; ?></td>
 											<td><?php echo $registros["participants"]; ?></td>
 											<td>
-												<input class="btn btn-success" type="button" name="details" value="Details" onclick='admin("<?php echo $tor->name_team; ?>","<?php echo $cat; ?>","<?php echo $tour; ?>","<?php echo $tor->participants; ?>","<?php echo $tor->creation_date; ?>","<?php echo $tor->adress; ?>","<?php echo $tor->email; ?>")'> 
+												<input class="btn btn-success" type="button" name="details" value="Details" onclick='admin(<?php echo $cont; ?>)'> 
 												<input class='btn btn-warning' type='submit' name='edit' value='Edit'>
 												<input class="btn btn-danger" type="button" name="delete" value="Delete" onclick='deletee("<?php echo $tor->id; ?>")'>
 												<input type='hidden' value="<?php echo $registros["name_team"]; ?>" name='team'>
@@ -137,13 +137,48 @@
 										    	<input type='hidden' value="<?php echo $registros["creation_date"]; ?>" name='date'>
 										    	<input type='hidden' value="<?php echo $registros["website"]; ?>" name='web'>
 										    	<input type='hidden' value="<?php echo $registros["short_name"]; ?>" name='short'>
-										    
+										    	<!-- Modal -->
+												<div class="modal fade" id="exampleModal<?php echo $cont;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+												  <div class="modal-dialog" role="document">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <h5 class="modal-title" id="exampleModal1Label" style="color:black;">Details of <?php echo $registros["name_team"]; ?> </h5>
+												        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												          <span aria-hidden="true">&times;</span>
+												        </button>
+												      </div>
+												      <div class="modal-body">
+												        <ul style="color:black;">
+												        	<li>Category:&nbsp;<?php 
+												        			if ($cat==1) {
+												        				echo "Beginner";
+												        			}
+												        			if ($cat==2) {
+												        				echo "Amateur";
+												        			}if ($cat==3){
+												        				echo "Professional";
+												        			}
+												        			?>
+												        	</li>
+												        	<li>Creation date:&nbsp;<?php echo $registros["creation_date"]; ?></li>
+												        	<li>User:&nbsp;<?php echo $registros["user"]; ?></li>
+												        	<li>Website:&nbsp;<?php echo $registros["website"]; ?></li>
+												        	<li>Email:&nbsp;<?php echo $registros["email"]; ?></li>
+												        </ul>
+												      </div>
+												      <div class="modal-footer">
+												        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+												      </div>
+												    </div>
+												  </div>
+												</div>
 											</td>
 										</tr>	
 
 									</form>
 
 								<?php
+									$cont++;
 								} 
 							}
 
@@ -195,7 +230,7 @@
 
 									<?php  
 
-										if (isset($_GET["pagination"]) && $_GET["pagination"]==$totalpaginas) {
+										if (isset($_GET["pagination"]) && $_GET["pagination"]==$totalpaginas || $totalpaginas==1) {
 											?>
 												<li class="page-item disabled">
 											      <a class="page-link">Next</a>
@@ -203,13 +238,14 @@
 											<?php
 										}else{
 											
-												if (isset($_GET["pagination"])) {
-													?>	
+												if (isset($_GET["pagination"]) ) {
+													?>		
 														<li class="page-item">
 													      <a class="page-link" href="?pagination=<?php echo $_GET["pagination"]+1; ?>&tour=<?php echo $tour; ?>&cat=<?php echo $cat; ?>">Next</a>
 													    </li>
 													<?php
 												}else{
+
 													?>
 														<li class="page-item">
 													      <a class="page-link" href="?pagination=2&tour=<?php echo $tour; ?>&cat=<?php echo $cat; ?>">Next</a>
@@ -230,8 +266,8 @@
 </body>
 
 <script type="text/javascript">
-	function admin(a,b,c,d,e,f,g) {
-		alert("Team: "+a+" \nCategory: "+b+"\nTournament: "+c+"\nParticipants: "+d+"\nCreation date: "+e+"\nAdress: "+f+"\nEmail: "+g);
+	function admin(a) {
+		$('#exampleModal'+a).modal('show');
 	}
 	function deletee(a) {
 		location.href="delete.php?id="+a;
