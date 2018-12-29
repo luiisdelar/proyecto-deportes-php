@@ -11,8 +11,9 @@
 	 		<h1 class="text-center">Admin Zone</h1>
 	
 			<form class="row" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-				<div class="col-4">
-					<h3>Tournaments:</h3>
+			 <div class="col-md-4 col-xs-12"> 
+				<div class="form-group">
+					<h4>Tournaments:</h4>
 					<select class="form-control" name="tour">
 				
 			<?php 
@@ -26,19 +27,25 @@
 
 			 ?>
 			</select>
-			</div>
-			
-				<div class="col-4">
-					<h3>Category</h3>
-					<select class="form-control" name="cat">
-						<option value="1">Beginner</option>
-						<option value="2">Amateur</option>
-						<option value="3">Professional</option>
-					</select>
 				</div>
+			</div>
 
-				<div class="col-4 d-flex align-items-end">
-					<input class="btn btn-primary" type="submit" name="consult" value="Consult">
+				<div class="col-md-4 col-xs-12">
+					<div class="form-group">
+						<h4>Category:</h4>
+						<select class="form-control" name="cat">
+							<option value="1">Beginner</option>
+							<option value="2">Amateur</option>
+							<option value="3">Professional</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-xs-12 ">
+					<div class="form-group">
+						<h4>&nbsp;</h4>
+						<input class="btn btn-primary" type="submit" name="consult" value="Consult">
+					</div>	
 				</div>
 				
 			</form>
@@ -129,6 +136,7 @@
 												<input class="btn btn-success" type="button" name="details" value="Details" onclick='admin(<?php echo $cont; ?>)'> 
 												<input class='btn btn-warning' type='submit' name='edit' value='Edit'>
 												<input class="btn btn-danger" type="button" name="delete" value="Delete" onclick='deletee("<?php echo $tor->id; ?>")'>
+												<!-- Hiddens items -->
 												<input type='hidden' value="<?php echo $registros["name_team"]; ?>" name='team'>
 										    	<input type='hidden' value="<?php echo $registros["adress"]; ?>" name='adress'>
 										     	<input type='hidden' value="<?php echo $registros["user"]; ?>" name='user'>
@@ -195,7 +203,7 @@
 				 <ul class="pagination">
 								  	
 				    	<?php  
-				    if (isset($_GET["pagination"])) {
+				    if (isset($_GET["pagination"]) && $_GET["pagination"]!=1) {
 				    	?>
 
 					    <li class="page-item">

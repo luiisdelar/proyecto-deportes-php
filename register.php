@@ -79,21 +79,21 @@
 
 		<div class="row">
 
-			<div class="col"> 
+			<div class="col-md-4 col-xs-12"> 
 				<div class="form-group">
 					<label>Name team</label>
 					<input class="form-control" type="text" placeholder="name team" name="name_team" required="true">
 				</div>
 			</div>
 			
-			<div class="col">
+			<div class="col-md-4 col-xs-12">
 				<div class="form-group">
 					<label>Short name</label>
 					<input class="form-control" type="text" placeholder="short name" name="short_name" required="true">
 				</div>
 			</div>		
 	
-			<div class="col">
+			<div class="col-md-4 col-xs-12">
 				<div class="form-group">
 					<label>Creation date</label>
 					<input class="form-control" type="date" name="creation_date" required="true">
@@ -103,21 +103,21 @@
 
 		<div class="row">
 
-			<div class="col"> 
+			<div class="col-md-4 col-xs-12"> 
 				<div class="form-group">
 					<label>Responsability adress</label>
 					<input class="form-control" type="text" name="adress" placeholder="responsabilty adress">
 				</div>
 			</div>
 
-			<div class="col"> 
+			<div class="col-md-4 col-xs-12"> 
 				<div class="form-group">
 					<label>Email</label>
 					<input class="form-control" type="email" name="email" placeholder="email" required="true">
 				</div>
 			</div>	
 		
-			<div class="col"> 	
+			<div class="col-md-4 col-xs-12"> 	
 				<div class="form-group">
 					<label>Website</label>		
 					<input class="form-control" typer="web" name="website" placeholder="website">
@@ -128,21 +128,21 @@
 
 		<div class="row">
 
-			<div class="col"> 
+			<div class="col-md-4 col-xs-12"> 
 				<div class="form-group">
 					<label>Username</label>
 					<input class="form-control" type="text" name="user" placeholder="username" required="true">
 				</div>
 			</div>
 
-			<div class="col">	
+			<div class="col-md-4 col-xs-12">	
 				<div class="form-group">
 					<label>Password</label>
 					<input class="form-control" type="password" name="password" placeholder="password" id="password" required="true">
 				</div>
 			</div>
 			
-			<div class="col">	
+			<div class="col-md-4 col-xs-12">	
 				<div class="form-group">
 					<label>Confirm password</label>
 					<input class="form-control" type="password" placeholder="confirm password" id="confirm_password" required="true">

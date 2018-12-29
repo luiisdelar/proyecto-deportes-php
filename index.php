@@ -65,7 +65,7 @@
 
 		<div class="row align-items-center h-100 justify-content-center">
 				
-				<form class="col-6 border border-secondary rounded shadow-lg p-3 mb-5 bg-white rounded" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				<form class="col-sm-6 border border-secondary rounded shadow-lg p-3 mb-5 bg-white rounded" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
 					<h1 class="text-center">Login</h1>			
 					
@@ -80,15 +80,22 @@
 							<input class="form-control" type="password" placeholder="password" name="password">
 						</div>
 
-						<div class="row justify-content-between form-group">
-								<div class="col-6"> 
-									<input class="btn btn-primary form-control" type="button" value="Register" onclick="location.href='register.php';">
-								</div>
-								
-								<div class="col-6"> 	
+						
+						<div class="row justify-content-center">		
+							
+							<div class="col-12"> 
+								<div class="form-group">	
 									<input class="btn btn-primary form-control" type="submit" value="Login" name="login">
 								</div>
-						</div>
+							</div>
+							
+							<div class="col-12">
+								<div class="form-group">
+									<input class="btn btn-primary form-control" type="button" value="Register" onclick="location.href='register.php';">
+								</div>
+							</div>	
+						</div>	
+						
 		
 				</form>
 			</div>

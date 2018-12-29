@@ -79,13 +79,17 @@
 			
 
 
-			<div class="row form-group justify-content-between">
-				<div class="col-6"> 
+			<div class="row justify-content-center">
+				<div class="col-12">
+					<div class="form-group"> 
 					<input class="btn btn-primary form-control" type="submit" name="inscription" value="Inscription">
+					</div>
 				</div>
 
-				<div class="col-6">
+				<div class="col-12">
+					<div class="form-group">
 					<input class="btn btn-primary form-control" type="button" value="Tournaments List" onclick="location.href='list_tourn.php';">
+					</div>
 				</div>
 			</div>
 
